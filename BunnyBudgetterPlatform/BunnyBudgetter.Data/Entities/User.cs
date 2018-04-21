@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BunnyBudgetter.Data
+namespace BunnyBudgetter.Data.Entities
 {
     public class User
     {

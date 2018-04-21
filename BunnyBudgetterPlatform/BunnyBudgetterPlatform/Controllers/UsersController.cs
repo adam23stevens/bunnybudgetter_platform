@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BunnyBudgetter.Data;
-using BunnyBudgetterPlatform.Data.Models;
+using BunnyBudgetter.Data.Entities;
+using BunnyBudgetterPlatform.Data.Model;
 
 namespace BunnyBudgetterPlatform.Controllers
 {

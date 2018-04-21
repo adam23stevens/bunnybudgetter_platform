@@ -7,3 +7,8 @@ D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudget
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.AssemblyInfo.cs
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.xml
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.csproj.CopyComplete
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.Relational.xml
