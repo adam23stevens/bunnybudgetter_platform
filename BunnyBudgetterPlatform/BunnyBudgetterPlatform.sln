@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyBudgetterPlatform", "BunnyBudgetterPlatform\BunnyBudgetterPlatform.csproj", "{5E6EFA36-923F-4DB6-86AE-9FA4AC925517}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BunnyBudgetterPlatform", "BunnyBudgetterPlatform\BunnyBudgetterPlatform.csproj", "{5E6EFA36-923F-4DB6-86AE-9FA4AC925517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyBudgetter.Data", "BunnyBudgetter.Data\BunnyBudgetter.Data.csproj", "{9B4BC7AF-8BE2-4C13-A56A-244AC75C8DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BunnyBudgetter.Data", "BunnyBudgetter.Data\BunnyBudgetter.Data.csproj", "{9B4BC7AF-8BE2-4C13-A56A-244AC75C8DA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyBudgetter.Business", "BunnyBudgetter.Business\BunnyBudgetter.Business.csproj", "{92C80F3F-2A0A-44CD-AA09-1E668C970812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9B4BC7AF-8BE2-4C13-A56A-244AC75C8DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B4BC7AF-8BE2-4C13-A56A-244AC75C8DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4BC7AF-8BE2-4C13-A56A-244AC75C8DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C80F3F-2A0A-44CD-AA09-1E668C970812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C80F3F-2A0A-44CD-AA09-1E668C970812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C80F3F-2A0A-44CD-AA09-1E668C970812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C80F3F-2A0A-44CD-AA09-1E668C970812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
