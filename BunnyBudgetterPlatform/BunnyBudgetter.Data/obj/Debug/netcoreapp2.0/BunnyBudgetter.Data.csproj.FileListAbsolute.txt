@@ -1,14 +1,9 @@
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.deps.json
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb
-D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.dll
-D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.xml
-D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.Relational.xml
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.csprojResolveAssemblyReference.cache
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.csproj.CoreCompileInputs.cache
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.AssemblyInfoInputs.cache
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.AssemblyInfo.cs
-D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.csproj.CopyComplete
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb

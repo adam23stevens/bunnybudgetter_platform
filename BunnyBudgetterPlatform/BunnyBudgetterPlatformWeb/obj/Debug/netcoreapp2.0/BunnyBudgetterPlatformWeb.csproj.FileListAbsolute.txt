@@ -1,0 +1,15 @@
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.deps.json
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.runtimeconfig.json
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.runtimeconfig.dev.json
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.csprojResolveAssemblyReference.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.csproj.CoreCompileInputs.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.AssemblyInfoInputs.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.AssemblyInfo.cs
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.csproj.CopyComplete
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatformWeb\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatformWeb.pdb

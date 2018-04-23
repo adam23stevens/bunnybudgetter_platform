@@ -37,14 +37,30 @@ namespace BunnyBudgetter.Data.Repositories
             return _context.Set<T>().Where(qry);
         }
 
-        //public IQueryable<T> GetAllWhereWithIncludes<T>(Expression<Func<T, bool>> qry, Expression<Func<T, object[]>> includes) where T : class
-        //{
-        //    var queryable = _context.Set<T>().AsQueryable();
-        //}
+        public IQueryable<T> GetAllWhereWithIncludes<T>(Expression<Func<T, bool>> qry, params Expression<Func<T, object>>[] includes) where T : class
+        {
+            var queryable = _context.Set<T>().AsQueryable();
+            return includes.Aggregate(
+                queryable,
+                (current, include) => current.Include(include))
+                .Where(qry);
+        }
+
+        public IQueryable<T> GetAllWithIncludes<T>(params Expression<Func<T, object>>[] includes) where T : class
+        {
+            var queryable = _context.Set<T>().AsQueryable();
+            return includes.Aggregate(queryable, (current, include) => current.Include(include));
+        }
 
         public async Task<T> GetEntityById<T>(int id) where T : class
         {
             return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task UpdateEntity<T>(T obj) where T : class
+        {
+            _context.Update<T>(obj);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -9,13 +9,14 @@ namespace BunnyBudgetterPlatform.Data.Model
 {
     public class BunnyBudgetterPlatformContext : DbContext
     {
-        public BunnyBudgetterPlatformContext (DbContextOptions<BunnyBudgetterPlatformContext> options)
+        public BunnyBudgetterPlatformContext(DbContextOptions<BunnyBudgetterPlatformContext> options)
             : base(options)
         {
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<AccountUser> AccountUsers { get; set; }
         public DbSet<MonthPayment> MonthPayments { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<PaymentType> PaymentTypes { get; set; }

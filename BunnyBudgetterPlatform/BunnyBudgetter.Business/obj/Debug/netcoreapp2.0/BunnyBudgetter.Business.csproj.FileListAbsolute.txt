@@ -1,0 +1,12 @@
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\bin\Debug\netcoreapp2.0\BunnyBudgetter.Business.deps.json
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\bin\Debug\netcoreapp2.0\BunnyBudgetter.Business.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\bin\Debug\netcoreapp2.0\BunnyBudgetter.Business.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.csprojResolveAssemblyReference.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.csproj.CoreCompileInputs.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.AssemblyInfoInputs.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.AssemblyInfo.cs
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.csproj.CopyComplete
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Business\obj\Debug\netcoreapp2.0\BunnyBudgetter.Business.pdb

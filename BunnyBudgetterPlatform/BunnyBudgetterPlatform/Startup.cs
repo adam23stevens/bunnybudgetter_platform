@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using BunnyBudgetterPlatform.Data.Model;
+using Microsoft.AspNetCore.Identity;
+using BunnyBudgetter.Business.Services;
+using BunnyBudgetter.Data.Repositories;
 
 namespace BunnyBudgetterPlatform
 {
@@ -28,9 +31,13 @@ namespace BunnyBudgetterPlatform
             services.AddMvc();
 
             services.AddDbContext<BunnyBudgetterPlatformContext>(options =>
-                    options.UseSqlite(
+                    options.UseSqlServer(
                         Configuration.GetConnectionString("BunnyBudgetterPlatformContext")
                         , b => b.MigrationsAssembly("BunnyBudgetter.Data")));
+
+            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IAccountService, AccountService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

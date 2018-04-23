@@ -119,7 +119,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.dll": {}
         }
       },
-      "Microsoft.AspNetCore.All/2.0.6": {
+      "Microsoft.AspNetCore.All/2.0.7": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore": "2.0.2",
@@ -5029,9 +5029,25 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "BunnyBudgetter.Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "BunnyBudgetter.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BunnyBudgetter.Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BunnyBudgetter.Business.dll": {}
+        }
+      },
       "BunnyBudgetter.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.2"
+        },
         "compile": {
           "bin/placeholder/BunnyBudgetter.Data.dll": {}
         },
@@ -5122,10 +5138,10 @@
         "microsoft.aspnetcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.All/2.0.6": {
-      "sha512": "5AEYk4hS25RcPkh1kWeKpn487/9Bb3GeVfu8Sl7EOFv9ADXmz7ypVyVlp8FMwgQIJSykzy6kF6KOOduhrWGmSA==",
+    "Microsoft.AspNetCore.All/2.0.7": {
+      "sha512": "hpWBRgs094P0jBWJRqBV+8oXl6G+O5ixDAgXI5qouOsg2jlLOmYr1+95+lRbLSn31HhKbQdNel6VQSDUbm0juw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.all/2.0.6",
+      "path": "microsoft.aspnetcore.all/2.0.7",
       "files": [
         "build/PublishWithAspNetCoreTargetManifest.targets",
         "build/aspnetcore-store-2.0.0-common.xml",
@@ -5136,9 +5152,10 @@
         "build/aspnetcore-store-2.0.3.xml",
         "build/aspnetcore-store-2.0.5.xml",
         "build/aspnetcore-store-2.0.6.xml",
+        "build/aspnetcore-store-2.0.7.xml",
         "build/netcoreapp2.0/Microsoft.AspNetCore.All.targets",
         "lib/netcoreapp2.0/_._",
-        "microsoft.aspnetcore.all.2.0.6.nupkg.sha512",
+        "microsoft.aspnetcore.all.2.0.7.nupkg.sha512",
         "microsoft.aspnetcore.all.nuspec"
       ]
     },
@@ -13125,6 +13142,11 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "BunnyBudgetter.Business/1.0.0": {
+      "type": "project",
+      "path": "../BunnyBudgetter.Business/BunnyBudgetter.Business.csproj",
+      "msbuildProject": "../BunnyBudgetter.Business/BunnyBudgetter.Business.csproj"
+    },
     "BunnyBudgetter.Data/1.0.0": {
       "type": "project",
       "path": "../BunnyBudgetter.Data/BunnyBudgetter.Data.csproj",
@@ -13133,8 +13155,9 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "BunnyBudgetter.Business >= 1.0.0",
       "BunnyBudgetter.Data >= 1.0.0",
-      "Microsoft.AspNetCore.All >= 2.0.6",
+      "Microsoft.AspNetCore.All >= 2.0.7",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3"
     ]
@@ -13173,6 +13196,9 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Business\\BunnyBudgetter.Business.csproj": {
+              "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Business\\BunnyBudgetter.Business.csproj"
+            },
             "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Data\\BunnyBudgetter.Data.csproj": {
               "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Data\\BunnyBudgetter.Data.csproj"
             }
@@ -13190,7 +13216,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "[2.0.6, )"
+            "version": "[2.0.7, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

@@ -14,10 +14,14 @@ namespace BunnyBudgetter.Data.Repositories
 
         Task<T> GetEntityById<T>(int id) where T : class;
 
+        Task UpdateEntity<T>(T obj) where T : class;
+
         IQueryable<T> GetAll<T>() where T : class;
 
         IQueryable<T> GetAllWhere<T>(Expression<Func<T, bool>> qry) where T : class;
 
-        //IQueryable<T> GetAllWhereWithIncludes<T>(Expression<Func<T, bool>> qry, Expression<Func<T, object[]>> includes) where T : class;
+        IQueryable<T> GetAllWithIncludes<T>(params Expression<Func<T, object>>[] includes) where T : class;
+
+        IQueryable<T> GetAllWhereWithIncludes<T>(Expression<Func<T, bool>> qry, Expression<Func<T, object>>[] includes) where T : class;
     }
 }
