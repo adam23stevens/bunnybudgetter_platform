@@ -873,6 +873,16 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
+      "BunnyBudgetter.Comms/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/BunnyBudgetter.Comms.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BunnyBudgetter.Comms.dll": {}
+        }
+      },
       "BunnyBudgetter.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -3336,6 +3346,11 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "BunnyBudgetter.Comms/1.0.0": {
+      "type": "project",
+      "path": "../BunnyBudgetter.Comms/BunnyBudgetter.Comms.csproj",
+      "msbuildProject": "../BunnyBudgetter.Comms/BunnyBudgetter.Comms.csproj"
+    },
     "BunnyBudgetter.Data/1.0.0": {
       "type": "project",
       "path": "../BunnyBudgetter.Data/BunnyBudgetter.Data.csproj",
@@ -3344,6 +3359,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "BunnyBudgetter.Comms >= 1.0.0",
       "BunnyBudgetter.Data >= 1.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
@@ -3382,6 +3398,9 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Comms\\BunnyBudgetter.Comms.csproj": {
+              "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Comms\\BunnyBudgetter.Comms.csproj"
+            },
             "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Data\\BunnyBudgetter.Data.csproj": {
               "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Data\\BunnyBudgetter.Data.csproj"
             }

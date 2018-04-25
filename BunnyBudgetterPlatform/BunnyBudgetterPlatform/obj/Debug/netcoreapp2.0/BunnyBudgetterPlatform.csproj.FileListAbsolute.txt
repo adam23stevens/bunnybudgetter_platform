@@ -4,8 +4,10 @@ D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudget
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatform.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetterPlatform.pdb
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetter.Business.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetter.Comms.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetter.Business.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetter.Comms.pdb
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\bin\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatform.csprojResolveAssemblyReference.cache
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetterPlatform\obj\Debug\netcoreapp2.0\BunnyBudgetterPlatform.csproj.CoreCompileInputs.cache

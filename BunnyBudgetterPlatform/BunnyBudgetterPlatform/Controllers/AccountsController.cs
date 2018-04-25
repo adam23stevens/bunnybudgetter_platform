@@ -10,6 +10,7 @@ using BunnyBudgetterPlatform.Data.Model;
 using BunnyBudgetter.Business.Services;
 using BunnyBudgetter.Data.Model;
 using BunnyBudgetter.Business.Services.Contracts;
+using BunnyBudgetterPlatform.RequestModels;
 
 namespace BunnyBudgetterPlatform.Controllers
 {
@@ -37,6 +38,14 @@ namespace BunnyBudgetterPlatform.Controllers
                 return Ok(userAccounts);
             }
             return new NotFoundResult();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAccount([FromBody] AccountCreationReq accountCreationReq)
+        {
+            await _accountService.AddAccount(accountCreationReq);
+
+            return Ok();
         }
 
         // GET: api/Accounts/5

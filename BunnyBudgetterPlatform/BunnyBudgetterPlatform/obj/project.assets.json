@@ -5033,6 +5033,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "BunnyBudgetter.Comms": "1.0.0",
           "BunnyBudgetter.Data": "1.0.0"
         },
         "compile": {
@@ -5040,6 +5041,16 @@
         },
         "runtime": {
           "bin/placeholder/BunnyBudgetter.Business.dll": {}
+        }
+      },
+      "BunnyBudgetter.Comms/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/BunnyBudgetter.Comms.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BunnyBudgetter.Comms.dll": {}
         }
       },
       "BunnyBudgetter.Data/1.0.0": {
@@ -13147,6 +13158,11 @@
       "path": "../BunnyBudgetter.Business/BunnyBudgetter.Business.csproj",
       "msbuildProject": "../BunnyBudgetter.Business/BunnyBudgetter.Business.csproj"
     },
+    "BunnyBudgetter.Comms/1.0.0": {
+      "type": "project",
+      "path": "../BunnyBudgetter.Comms/BunnyBudgetter.Comms.csproj",
+      "msbuildProject": "../BunnyBudgetter.Comms/BunnyBudgetter.Comms.csproj"
+    },
     "BunnyBudgetter.Data/1.0.0": {
       "type": "project",
       "path": "../BunnyBudgetter.Data/BunnyBudgetter.Data.csproj",
@@ -13156,6 +13172,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "BunnyBudgetter.Business >= 1.0.0",
+      "BunnyBudgetter.Comms >= 1.0.0",
       "BunnyBudgetter.Data >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.7",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -13198,6 +13215,9 @@
           "projectReferences": {
             "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Business\\BunnyBudgetter.Business.csproj": {
               "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Business\\BunnyBudgetter.Business.csproj"
+            },
+            "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Comms\\BunnyBudgetter.Comms.csproj": {
+              "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Comms\\BunnyBudgetter.Comms.csproj"
             },
             "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Data\\BunnyBudgetter.Data.csproj": {
               "projectPath": "D:\\Dev\\Projects\\Bunny\\bunnybudgetter_platform\\BunnyBudgetterPlatform\\BunnyBudgetter.Data\\BunnyBudgetter.Data.csproj"

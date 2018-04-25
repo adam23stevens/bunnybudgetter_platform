@@ -1,0 +1,9 @@
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\bin\Debug\netcoreapp2.0\BunnyBudgetter.Comms.deps.json
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\bin\Debug\netcoreapp2.0\BunnyBudgetter.Comms.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\bin\Debug\netcoreapp2.0\BunnyBudgetter.Comms.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\obj\Debug\netcoreapp2.0\BunnyBudgetter.Comms.csprojResolveAssemblyReference.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\obj\Debug\netcoreapp2.0\BunnyBudgetter.Comms.csproj.CoreCompileInputs.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\obj\Debug\netcoreapp2.0\BunnyBudgetter.Comms.AssemblyInfoInputs.cache
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\obj\Debug\netcoreapp2.0\BunnyBudgetter.Comms.AssemblyInfo.cs
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\obj\Debug\netcoreapp2.0\BunnyBudgetter.Comms.dll
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Comms\obj\Debug\netcoreapp2.0\BunnyBudgetter.Comms.pdb

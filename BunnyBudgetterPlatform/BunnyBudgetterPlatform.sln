@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BunnyBudgetter.Data", "Bunn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BunnyBudgetter.Business", "BunnyBudgetter.Business\BunnyBudgetter.Business.csproj", "{D0384070-F9D7-4BCF-BDF0-9E092F706F13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyBudgetter.Comms", "BunnyBudgetter.Comms\BunnyBudgetter.Comms.csproj", "{94247939-53AD-4DC5-A3E2-59A2F588EDA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D0384070-F9D7-4BCF-BDF0-9E092F706F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0384070-F9D7-4BCF-BDF0-9E092F706F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0384070-F9D7-4BCF-BDF0-9E092F706F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94247939-53AD-4DC5-A3E2-59A2F588EDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94247939-53AD-4DC5-A3E2-59A2F588EDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94247939-53AD-4DC5-A3E2-59A2F588EDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94247939-53AD-4DC5-A3E2-59A2F588EDA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

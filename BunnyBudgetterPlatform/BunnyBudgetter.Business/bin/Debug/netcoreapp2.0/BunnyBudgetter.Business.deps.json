@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v2.0": {
       "BunnyBudgetter.Business/1.0.0": {
         "dependencies": {
+          "BunnyBudgetter.Comms": "1.0.0",
           "BunnyBudgetter.Data": "1.0.0"
         },
         "runtime": {
@@ -423,6 +424,11 @@
           "System.Runtime": "4.1.0"
         }
       },
+      "BunnyBudgetter.Comms/1.0.0": {
+        "runtime": {
+          "BunnyBudgetter.Comms.dll": {}
+        }
+      },
       "BunnyBudgetter.Data/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.2"
@@ -788,6 +794,11 @@
       "sha512": "sha512-k1S4Gc6IGwtHGT8188RSeGaX86Qw/wnrgNLshJvsdNUOPP9etMmo8S07c+UlOAx4K/xLuN9ivA1bD0LVurtIxQ==",
       "path": "system.threading.tasks/4.0.11",
       "hashPath": "system.threading.tasks.4.0.11.nupkg.sha512"
+    },
+    "BunnyBudgetter.Comms/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "BunnyBudgetter.Data/1.0.0": {
       "type": "project",

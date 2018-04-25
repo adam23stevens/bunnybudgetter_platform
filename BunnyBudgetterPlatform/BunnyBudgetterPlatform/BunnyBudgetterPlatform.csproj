@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BunnyBudgetter.Business\BunnyBudgetter.Business.csproj" />
+    <ProjectReference Include="..\BunnyBudgetter.Comms\BunnyBudgetter.Comms.csproj" />
     <ProjectReference Include="..\BunnyBudgetter.Data\BunnyBudgetter.Data.csproj" />
   </ItemGroup>
 

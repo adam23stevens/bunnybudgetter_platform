@@ -11,6 +11,7 @@ namespace BunnyBudgetter.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string AccountName { get; set; }
+        public float OverdraftLimit { get; set; }
         public ICollection<AccountUser> AccountUsers { get; set; }
         public ICollection<MonthPayment> MonthPayments { get; set; }
         public ICollection<PlannedPayment> PlannedPayments { get; set; }

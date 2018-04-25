@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BunnyBudgetter.Business.Extensions;
 using BunnyBudgetter.Data.Entities;
+using BunnyBudgetter.Data.Enums;
 using BunnyBudgetter.Data.Model;
 using BunnyBudgetter.Data.Repositories;
+using BunnyBudgetterPlatform.RequestModels;
 
 namespace BunnyBudgetter.Business.Services
 {
@@ -19,16 +21,123 @@ namespace BunnyBudgetter.Business.Services
             _repository = repository;
         }
 
-        public async Task AddAccount(Account account)
+        public async Task AddAccount(AccountCreationReq accountReq)
         {
+            var account = new Account
+            {
+                AccountName = accountReq.Name,
+                OverdraftLimit = accountReq.OverdraftLimit,
+                LastDateSalaryPaid = accountReq.LastDateSalaryPaid,
+                SalaryScheduleType = ((SalaryScheduleType)accountReq.SalaryScheduleType),
+                SalaryDayPaid = accountReq.SalaryDayPaid,
+                MonthlyNetSalaryAmount = accountReq.MonthlyNetSalaryAmount
+            };
+            try
+            {
+                ConfigureNextPayDate(account);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error with calculating salary dates - " + ex.Message);
+            }
+
+            var basePayment = new Payment
+            {
+                DayOfMonth = DateTime.Now.Day,
+                Description = "Initial Funds",
+                Amount = accountReq.CurrentAmount,
+                IsIncome = true
+            };
+
+            var monthPayment = new MonthPayment
+            {
+                IsCurrentMonth = true,
+                MonthName = DateTime.Today.ToString("MMM"),
+                Payments = new List<Payment>
+                {
+                    basePayment
+                }
+            };
+            account.MonthPayments = new List<MonthPayment>
+            {
+                monthPayment
+            };
+
             await _repository.AddEntity(account);
+
+            var AccountUser = new AccountUser
+            {
+                AccountId = account.Id,
+                UserId = accountReq.UserId
+            };
+
+            await _repository.UpdateEntity(AccountUser);
+
+            var id = account.Id;
+        }
+
+        private void ConfigureNextPayDate(Account account)
+        {
+            var nextPayDate = new DateTime();
+            switch (account.SalaryScheduleType)
+            {
+                case SalaryScheduleType.DayOfMonth:
+                    //Take month of last paid, add one. append SalaryDayPaid as the day paid for new date. if this is saturday or sunday, make it a friday.
+                    nextPayDate = account.LastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, account.SalaryDayPaid);
+                    break;
+                case SalaryScheduleType.EndOfMonth:
+                    //Take month of last time paid and add one month. get the final day
+                    nextPayDate = account.LastDateSalaryPaid.AddMonths(1);
+                    var endOfMonthDay = DateTime.DaysInMonth(nextPayDate.Year, nextPayDate.Month);
+                    nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, endOfMonthDay);
+                    break;
+                case SalaryScheduleType.LastWeekDayOfMonth:
+                    //Take month of last time paid and one month. Get last day. remove days till they equal the day
+                    nextPayDate = account.LastDateSalaryPaid.AddMonths(1);
+                    var endDay = DateTime.DaysInMonth(nextPayDate.Year, nextPayDate.Month);
+                    var dayOfWeek = ((DayOfWeek)account.SalaryDayPaid);
+                    nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, endDay);
+                    while (!nextPayDate.DayOfWeek.Equals(dayOfWeek))
+                    {
+                        nextPayDate = nextPayDate.AddDays(-1);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            SetToWorkingDay(nextPayDate);
+
+            if (nextPayDate < DateTime.Now)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                account.NextDateSalaryPaid = nextPayDate;
+            }
+        }
+
+        private void SetToWorkingDay(DateTime nextPayDate)
+        {
+            while(nextPayDate.DayOfWeek.Equals(DayOfWeek.Saturday) || nextPayDate.DayOfWeek.Equals(DayOfWeek.Sunday))
+            {
+                nextPayDate.AddDays(-1);
+            }
         }
 
         public async Task AddPayment(Payment payment, Account account)
         {
-            account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments.Add(payment);
-
-            await _repository.AddEntity(payment);
+            var existingPayments = account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments;
+            if (existingPayments == null)
+            {
+                account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments = new List<Payment> { payment };
+            }
+            else
+            {
+                account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments.Add(payment);
+            }
 
             await _repository.UpdateEntity(account);
         }
@@ -99,7 +208,6 @@ namespace BunnyBudgetter.Business.Services
                         PlannedPaymentId = p.Id
                     };
 
-                    //_repository.AddEntity(payment);
                     currentMonthPayments.Payments.Add(payment);
                 }
             });

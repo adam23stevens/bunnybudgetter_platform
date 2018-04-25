@@ -11,5 +11,6 @@ namespace BunnyBudgetter.Data.Entities
         public ICollection<Payment> Payments { get; set; }
         public bool IsCurrentMonth { get; set; }
         public int AccountId { get; set; }
+        public float EndOfMonthAmount { get; set; }
     }
 }

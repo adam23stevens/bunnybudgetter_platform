@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BunnyBudgetter.Comms\BunnyBudgetter.Comms.csproj" />
     <ProjectReference Include="..\BunnyBudgetter.Data\BunnyBudgetter.Data.csproj" />
   </ItemGroup>
 
