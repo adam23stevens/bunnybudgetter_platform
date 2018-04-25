@@ -13,6 +13,7 @@ namespace BunnyBudgetter.Data.Entities
         public string Password { get; set; }
         public bool IsLockedOut { get; set; }
         public int NumberOfAttempts { get; set; }
+        public string AccessCode { get; set; }
         public ICollection<AccountUser> AccountUsers { get; set; }
     }
 }

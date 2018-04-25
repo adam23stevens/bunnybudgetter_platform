@@ -9,6 +9,7 @@ using BunnyBudgetter.Data.Entities;
 using BunnyBudgetterPlatform.Data.Model;
 using BunnyBudgetter.Business.Services;
 using BunnyBudgetter.Data.Model;
+using BunnyBudgetter.Business.Services.Contracts;
 
 namespace BunnyBudgetterPlatform.Controllers
 {
@@ -17,18 +18,25 @@ namespace BunnyBudgetterPlatform.Controllers
     public class AccountsController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IUserService _userService;
 
-        public AccountsController(IAccountService accountService)
+        public AccountsController(IAccountService accountService, IUserService userService)
         {
             _accountService = accountService;
+            _userService = userService;
         }
 
         // GET: api/Accounts
-        [HttpGet]
-        public IEnumerable<UserAccountDto> GetUserAccounts(int userId = 1)
+        [HttpGet("{userAccessCode}")]
+        public IActionResult GetUserAccounts([FromRoute]string userAccessCode)
         {
-            //testing
-            return _accountService.GetUserAccountDtos(userId);
+            var user = _userService.GetUserFromCode(userAccessCode);
+            if (user != null)
+            {
+                var userAccounts = _accountService.GetUserAccountDtos(user.Id);
+                return Ok(userAccounts);
+            }
+            return new NotFoundResult();
         }
 
         // GET: api/Accounts/5

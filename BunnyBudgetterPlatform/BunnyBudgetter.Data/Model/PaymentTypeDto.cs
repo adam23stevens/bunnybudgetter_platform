@@ -10,5 +10,6 @@ namespace BunnyBudgetter.Data.Model
         public string Name { get; set; }
         public IEnumerable<Payment> Payments { get; set; }
         public float RemainingAmountForMonth { get; set; }
+        public float MaxAmount { get; set; }
     }
 }

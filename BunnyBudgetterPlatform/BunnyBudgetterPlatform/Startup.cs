@@ -13,6 +13,7 @@ using BunnyBudgetterPlatform.Data.Model;
 using Microsoft.AspNetCore.Identity;
 using BunnyBudgetter.Business.Services;
 using BunnyBudgetter.Data.Repositories;
+using BunnyBudgetter.Business.Services.Contracts;
 
 namespace BunnyBudgetterPlatform
 {
@@ -37,6 +38,7 @@ namespace BunnyBudgetterPlatform
 
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IUserService, UserService>();
 
         }
 

@@ -12,5 +12,6 @@ namespace BunnyBudgetter.Data.Entities
         public int? PaymentTypeId { get; set; }
         public int? PlannedPaymentId { get; set; }
         public string Description { get; set; }
+        public bool IsIncome { get; set; }
     }
 }

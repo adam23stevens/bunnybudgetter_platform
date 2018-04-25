@@ -21,6 +21,7 @@ namespace BunnyBudgetter.Business.Extensions
             var amountSoFar = monthPayment.Payments.Where(p => p.PaymentTypeId == paymentType.Id)?.Sum(p => p.Amount);
 
             paymentTypeDto.RemainingAmountForMonth = paymentType.MaxAmount - amountSoFar ?? 0;
+            paymentTypeDto.MaxAmount = paymentType.MaxAmount;
 
             return paymentTypeDto;
         }
