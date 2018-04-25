@@ -11,6 +11,7 @@ namespace BunnyBudgetter.Data.Model
         public int UserId { get; set; }
         public int AccountId { get; set; }
         public float RemainingBalance { get; set; }
+        public string Currentmonth { get; set; }
         public List<Payment> CurrentMonthPayments { get; set; }
         public List<PaymentTypeDto> PaymentTypeDtos { get; set; }
     }

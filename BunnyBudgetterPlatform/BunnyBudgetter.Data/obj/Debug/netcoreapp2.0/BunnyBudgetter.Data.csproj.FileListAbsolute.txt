@@ -6,3 +6,4 @@ D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudget
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.AssemblyInfo.cs
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.dll
 D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.pdb
+D:\Dev\Projects\Bunny\bunnybudgetter_platform\BunnyBudgetterPlatform\BunnyBudgetter.Data\obj\Debug\netcoreapp2.0\BunnyBudgetter.Data.csprojResolveAssemblyReference.cache

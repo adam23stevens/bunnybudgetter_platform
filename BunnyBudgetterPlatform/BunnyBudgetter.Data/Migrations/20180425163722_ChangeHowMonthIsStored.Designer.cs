@@ -12,9 +12,10 @@ using System;
 namespace BunnyBudgetter.Data.Migrations
 {
     [DbContext(typeof(BunnyBudgetterPlatformContext))]
-    partial class BunnyBudgetterPlatformContextModelSnapshot : ModelSnapshot
+    [Migration("20180425163722_ChangeHowMonthIsStored")]
+    partial class ChangeHowMonthIsStored
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,7 +91,7 @@ namespace BunnyBudgetter.Data.Migrations
 
                     b.Property<float>("Amount");
 
-                    b.Property<DateTime>("Date");
+                    b.Property<int>("DayOfMonth");
 
                     b.Property<string>("Description");
 

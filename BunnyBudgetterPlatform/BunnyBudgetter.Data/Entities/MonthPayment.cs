@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BunnyBudgetter.Data.Entities
@@ -7,10 +8,11 @@ namespace BunnyBudgetter.Data.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string MonthName { get; set; }
+        public int Month { get; set; }
         public ICollection<Payment> Payments { get; set; }
         public bool IsCurrentMonth { get; set; }
         public int AccountId { get; set; }
         public float EndOfMonthAmount { get; set; }
+        public DateTime MonthPayDay { get; set; }
     }
 }

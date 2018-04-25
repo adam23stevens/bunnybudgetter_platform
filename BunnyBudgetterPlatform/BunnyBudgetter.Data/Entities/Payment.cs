@@ -8,7 +8,7 @@ namespace BunnyBudgetter.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public float Amount { get; set; }
-        public int DayOfMonth { get; set; }
+        public DateTime Date { get; set; }
         public int? PaymentTypeId { get; set; }
         public int? PlannedPaymentId { get; set; }
         public string Description { get; set; }

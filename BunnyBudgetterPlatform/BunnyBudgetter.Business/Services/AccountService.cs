@@ -27,14 +27,13 @@ namespace BunnyBudgetter.Business.Services
             {
                 AccountName = accountReq.Name,
                 OverdraftLimit = accountReq.OverdraftLimit,
-                LastDateSalaryPaid = accountReq.LastDateSalaryPaid,
                 SalaryScheduleType = ((SalaryScheduleType)accountReq.SalaryScheduleType),
                 SalaryDayPaid = accountReq.SalaryDayPaid,
                 MonthlyNetSalaryAmount = accountReq.MonthlyNetSalaryAmount
             };
             try
             {
-                ConfigureNextPayDate(account);
+                ConfigureNextPayDate(account, accountReq.LastDateSalaryPaid);
             }
             catch(Exception ex)
             {
@@ -43,7 +42,7 @@ namespace BunnyBudgetter.Business.Services
 
             var basePayment = new Payment
             {
-                DayOfMonth = DateTime.Now.Day,
+                Date = DateTime.Now,
                 Description = "Initial Funds",
                 Amount = accountReq.CurrentAmount,
                 IsIncome = true
@@ -52,7 +51,8 @@ namespace BunnyBudgetter.Business.Services
             var monthPayment = new MonthPayment
             {
                 IsCurrentMonth = true,
-                MonthName = DateTime.Today.ToString("MMM"),
+                Month = DateTime.Today.Month,
+                MonthPayDay = accountReq.LastDateSalaryPaid,
                 Payments = new List<Payment>
                 {
                     basePayment
@@ -76,25 +76,25 @@ namespace BunnyBudgetter.Business.Services
             var id = account.Id;
         }
 
-        private void ConfigureNextPayDate(Account account)
+        private void ConfigureNextPayDate(Account account, DateTime lastDateSalaryPaid)
         {
             var nextPayDate = new DateTime();
             switch (account.SalaryScheduleType)
             {
                 case SalaryScheduleType.DayOfMonth:
                     //Take month of last paid, add one. append SalaryDayPaid as the day paid for new date. if this is saturday or sunday, make it a friday.
-                    nextPayDate = account.LastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = lastDateSalaryPaid.AddMonths(1);
                     nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, account.SalaryDayPaid);
                     break;
                 case SalaryScheduleType.EndOfMonth:
                     //Take month of last time paid and add one month. get the final day
-                    nextPayDate = account.LastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = lastDateSalaryPaid.AddMonths(1);
                     var endOfMonthDay = DateTime.DaysInMonth(nextPayDate.Year, nextPayDate.Month);
                     nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, endOfMonthDay);
                     break;
                 case SalaryScheduleType.LastWeekDayOfMonth:
                     //Take month of last time paid and one month. Get last day. remove days till they equal the day
-                    nextPayDate = account.LastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = lastDateSalaryPaid.AddMonths(1);
                     var endDay = DateTime.DaysInMonth(nextPayDate.Year, nextPayDate.Month);
                     var dayOfWeek = ((DayOfWeek)account.SalaryDayPaid);
                     nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, endDay);
@@ -175,7 +175,7 @@ namespace BunnyBudgetter.Business.Services
 
                 if (currMonth != null)
                 {
-                    currMonth.Payments = GenerateMonthPayments(currMonth, acc.PlannedPayments);
+                    currMonth.Payments = GenerateMonthPayments(currMonth, acc.PlannedPayments, acc.NextDateSalaryPaid);
                 }
 
                 var dto = acc.ToUserAccountDto();
@@ -187,14 +187,9 @@ namespace BunnyBudgetter.Business.Services
             return userAccounts;
         }
 
-        private ICollection<Payment> GenerateMonthPayments(MonthPayment currentMonthPayments, ICollection<PlannedPayment> plannedPayments)
+        private ICollection<Payment> GenerateMonthPayments(MonthPayment currentMonthPayments, ICollection<PlannedPayment> plannedPayments, DateTime nextPayDay)
         {
-            var dayOfMonth = DateTime.Now.Day;
-
-            var plannedPaymentsToPay = plannedPayments.Where(
-                p => p.DayOfMonth <= dayOfMonth &&
-                p.IsActive
-                );
+            var plannedPaymentsToPay = GetPlannedPaymentsToPay(currentMonthPayments, plannedPayments, nextPayDay);
             
             plannedPaymentsToPay.ToList().ForEach(p =>
             {
@@ -203,7 +198,7 @@ namespace BunnyBudgetter.Business.Services
                     var payment = new Payment
                     {
                         Amount = p.Amount,
-                        DayOfMonth = p.DayOfMonth,
+                        Date = DateTime.Today,
                         Description = $"Planned Payment ({p.Name})",
                         PlannedPaymentId = p.Id
                     };
@@ -214,6 +209,33 @@ namespace BunnyBudgetter.Business.Services
 
             _repository.UpdateEntity(currentMonthPayments);
             return currentMonthPayments.Payments;
+        }
+
+        private IEnumerable<PlannedPayment> GetPlannedPaymentsToPay(MonthPayment currentMonthPayment, ICollection<PlannedPayment> plannedPayments, DateTime nextPayDay)
+        {
+            var wasPaidOn = currentMonthPayment.MonthPayDay;
+            var retPlannedPayments = new List<PlannedPayment>();
+
+            foreach(var p in plannedPayments.ToList())
+            {
+                if (p.IsActive)
+                {
+                    var lastPayDay = currentMonthPayment.MonthPayDay;
+
+                    var DateToPay = new DateTime(lastPayDay.Year, lastPayDay.Month, p.DayOfMonth);
+                    if (DateToPay < lastPayDay)
+                    {
+                        DateToPay = new DateTime(lastPayDay.Year, currentMonthPayment.Month, p.DayOfMonth);
+                    }
+
+                    if (DateToPay >= wasPaidOn && DateToPay < nextPayDay)
+                    {
+                        retPlannedPayments.Add(p);
+                    }
+                }
+            }
+
+            return retPlannedPayments;
         }
     }
 }
