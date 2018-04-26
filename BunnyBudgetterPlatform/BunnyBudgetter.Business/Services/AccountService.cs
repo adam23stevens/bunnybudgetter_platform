@@ -179,6 +179,10 @@ namespace BunnyBudgetter.Business.Services
                         thisMonth.IsCurrentMonth = false;
 
                         newMonth = BuildNewMonth(acc);
+                        
+                        acc.MonthPayments.Add(newMonth);                        
+                        //not sure if should update repo at this point...
+                        //_repository.Update(acc);
                     }
                     while (newMonth.MonthPayDay <= DateTime.Today);
                 }
