@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BunnyBudgetter.Business.Extensions;
+using BunnyBudgetter.Business.Services.Contracts;
 using BunnyBudgetter.Data.Entities;
 using BunnyBudgetter.Data.Enums;
 using BunnyBudgetter.Data.Model;
@@ -15,10 +16,12 @@ namespace BunnyBudgetter.Business.Services
     public class AccountService : IAccountService
     {
         private readonly IRepository _repository;
+        private readonly IPaymentService _paymentService;
 
-        public AccountService(IRepository repository)
+        public AccountService(IRepository repository, IPaymentService paymentService)
         {
             _repository = repository;
+            _paymentService = paymentService;
         }
 
         public async Task AddAccount(AccountCreationReq accountReq)
@@ -127,21 +130,6 @@ namespace BunnyBudgetter.Business.Services
             }
         }
 
-        public async Task AddPayment(Payment payment, Account account)
-        {
-            var existingPayments = account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments;
-            if (existingPayments == null)
-            {
-                account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments = new List<Payment> { payment };
-            }
-            else
-            {
-                account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments.Add(payment);
-            }
-
-            await _repository.UpdateEntity(account);
-        }
-
         public IEnumerable<UserAccountDto> GetUserAccountDtos(int userId)
         {
             var userAccounts = new List<UserAccountDto>();
@@ -175,7 +163,24 @@ namespace BunnyBudgetter.Business.Services
 
                 if (currMonth != null)
                 {
-                    currMonth.Payments = GenerateMonthPayments(currMonth, acc.PlannedPayments, acc.NextDateSalaryPaid);
+                    currMonth.Payments = GenerateMonthPayments(currMonth, acc.PlannedPayments, acc.NextDateSalaryPaid) as ICollection<Payment>;
+                }
+                if (acc.NextDateSalaryPaid <= DateTime.Today)
+                {
+                    var newMonth = new MonthPayment();
+                    do
+                    {
+                        var thisMonth = acc.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth);
+                        var prevMonthAmount = acc.MonthPayments.Where(m => !m.IsCurrentMonth).OrderBy(m => m.Id).FirstOrDefault()?.EndOfMonthAmount ?? 0;
+                        var totalPaymentsThisMonth = currMonth.Payments.Where(p => !p.IsIncome).Sum(p => p.Amount);
+                        var totalIncomeThisMonth = currMonth.Payments.Where(p => p.IsIncome).Sum(p => p.Amount);
+                        var endOfMonthAmount = prevMonthAmount + acc.MonthlyNetSalaryAmount + totalIncomeThisMonth - totalPaymentsThisMonth;
+                        thisMonth.EndOfMonthAmount = endOfMonthAmount;
+                        thisMonth.IsCurrentMonth = false;
+
+                        newMonth = BuildNewMonth(acc);
+                    }
+                    while (newMonth.MonthPayDay <= DateTime.Today);
                 }
 
                 var dto = acc.ToUserAccountDto();
@@ -187,31 +192,25 @@ namespace BunnyBudgetter.Business.Services
             return userAccounts;
         }
 
-        private ICollection<Payment> GenerateMonthPayments(MonthPayment currentMonthPayments, ICollection<PlannedPayment> plannedPayments, DateTime nextPayDay)
+        private MonthPayment BuildNewMonth(Account acc)
         {
-            var plannedPaymentsToPay = GetPlannedPaymentsToPay(currentMonthPayments, plannedPayments, nextPayDay);
-            
-            plannedPaymentsToPay.ToList().ForEach(p =>
+            var newMonthPayment = new MonthPayment();
+            var lastMonth = acc.MonthPayments.OrderBy(m => m.Id).FirstOrDefault();
+            if (lastMonth != null)
             {
-                if (!currentMonthPayments.Payments.Any(payment => payment.PlannedPaymentId == p.Id))
-                {
-                    var payment = new Payment
-                    {
-                        Amount = p.Amount,
-                        Date = DateTime.Today,
-                        Description = $"Planned Payment ({p.Name})",
-                        PlannedPaymentId = p.Id
-                    };
+                newMonthPayment.IsCurrentMonth = true;
+                newMonthPayment.Month = lastMonth.Month == 11 ? 0 : lastMonth.Month + 1; //redo this properly! 
+                newMonthPayment.MonthPayDay = acc.NextDateSalaryPaid;
+                ConfigureNextPayDate(acc, lastMonth.MonthPayDay);
 
-                    currentMonthPayments.Payments.Add(payment);
-                }
-            });
+                newMonthPayment.Payments = GenerateMonthPayments(newMonthPayment, acc.PlannedPayments, acc.NextDateSalaryPaid) as ICollection<Payment>;
+            }
 
-            _repository.UpdateEntity(currentMonthPayments);
-            return currentMonthPayments.Payments;
+            //else build the initial month?
+            return newMonthPayment;
         }
 
-        private IEnumerable<PlannedPayment> GetPlannedPaymentsToPay(MonthPayment currentMonthPayment, ICollection<PlannedPayment> plannedPayments, DateTime nextPayDay)
+        private IEnumerable<Payment> GenerateMonthPayments(MonthPayment currentMonthPayment, ICollection<PlannedPayment> plannedPayments, DateTime nextPayDay)
         {
             var wasPaidOn = currentMonthPayment.MonthPayDay;
             var retPlannedPayments = new List<PlannedPayment>();
@@ -231,11 +230,25 @@ namespace BunnyBudgetter.Business.Services
                     if (DateToPay >= wasPaidOn && DateToPay < nextPayDay)
                     {
                         retPlannedPayments.Add(p);
+
+                        if (!currentMonthPayment.Payments.Any(payment => payment.PlannedPaymentId == p.Id && payment.Date == DateToPay))
+                        {
+                            var payment = new Payment
+                            {
+                                Amount = p.Amount,
+                                Date = DateToPay,
+                                Description = $"Planned Payment ({p.Name})",
+                                PlannedPaymentId = p.Id
+                            };
+
+                            currentMonthPayment.Payments.Add(payment);
+                        }
                     }
                 }
             }
 
-            return retPlannedPayments;
+            _repository.UpdateEntity(currentMonthPayment);
+            return currentMonthPayment.Payments;
         }
     }
 }

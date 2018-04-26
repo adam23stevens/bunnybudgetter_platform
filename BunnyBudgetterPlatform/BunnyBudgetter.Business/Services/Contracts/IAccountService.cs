@@ -6,14 +6,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BunnyBudgetter.Business.Services
+namespace BunnyBudgetter.Business.Services.Contracts
 {
     public interface IAccountService
     {
         IEnumerable<UserAccountDto> GetUserAccountDtos(int userId);
         
-        Task AddPayment(Payment payment, Account account);
-
         Task AddAccount(AccountCreationReq account);
     }
 }

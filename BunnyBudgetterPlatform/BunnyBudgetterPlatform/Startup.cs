@@ -39,6 +39,7 @@ namespace BunnyBudgetterPlatform
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
         }
 
