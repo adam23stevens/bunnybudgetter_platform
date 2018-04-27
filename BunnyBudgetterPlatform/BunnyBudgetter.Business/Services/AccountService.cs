@@ -66,7 +66,7 @@ namespace BunnyBudgetter.Business.Services
                 monthPayment
             };
 
-            await _repository.AddEntity(account);
+            await _repository.AddEntityAsync(account);
 
             var AccountUser = new AccountUser
             {
@@ -74,7 +74,7 @@ namespace BunnyBudgetter.Business.Services
                 UserId = accountReq.UserId
             };
 
-            await _repository.UpdateEntity(AccountUser);
+            await _repository.UpdateEntityAsync(AccountUser);
 
             var id = account.Id;
         }
@@ -86,18 +86,18 @@ namespace BunnyBudgetter.Business.Services
             {
                 case SalaryScheduleType.DayOfMonth:
                     //Take month of last paid, add one. append SalaryDayPaid as the day paid for new date. if this is saturday or sunday, make it a friday.
-                    nextPayDate = lastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = account.NextDateSalaryPaid.AddMonths(1);
                     nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, account.SalaryDayPaid);
                     break;
                 case SalaryScheduleType.EndOfMonth:
                     //Take month of last time paid and add one month. get the final day
-                    nextPayDate = lastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = account.NextDateSalaryPaid.AddMonths(1);
                     var endOfMonthDay = DateTime.DaysInMonth(nextPayDate.Year, nextPayDate.Month);
                     nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, endOfMonthDay);
                     break;
                 case SalaryScheduleType.LastWeekDayOfMonth:
                     //Take month of last time paid and one month. Get last day. remove days till they equal the day
-                    nextPayDate = lastDateSalaryPaid.AddMonths(1);
+                    nextPayDate = account.NextDateSalaryPaid.AddMonths(1);
                     var endDay = DateTime.DaysInMonth(nextPayDate.Year, nextPayDate.Month);
                     var dayOfWeek = ((DayOfWeek)account.SalaryDayPaid);
                     nextPayDate = new DateTime(nextPayDate.Year, nextPayDate.Month, endDay);
@@ -112,14 +112,7 @@ namespace BunnyBudgetter.Business.Services
 
             SetToWorkingDay(nextPayDate);
 
-            if (nextPayDate < DateTime.Now)
-            {
-                throw new Exception();
-            }
-            else
-            {
-                account.NextDateSalaryPaid = nextPayDate;
-            }
+            account.NextDateSalaryPaid = nextPayDate;
         }
 
         private void SetToWorkingDay(DateTime nextPayDate)
@@ -157,54 +150,63 @@ namespace BunnyBudgetter.Business.Services
 
             foreach (var acc in accountsDb)
             {
-                var currMonthId = acc.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Id;
-
-                var currMonth = _repository.GetAllWithIncludes<MonthPayment>(includes => includes.Payments).FirstOrDefault(m => m.Id == currMonthId);
-
-                if (currMonth != null)
-                {
-                    currMonth.Payments = GenerateMonthPayments(currMonth, acc.PlannedPayments, acc.NextDateSalaryPaid) as ICollection<Payment>;
-                }
-                if (acc.NextDateSalaryPaid <= DateTime.Today)
-                {
-                    var newMonth = new MonthPayment();
-                    do
-                    {
-                        var thisMonth = acc.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth);
-                        var prevMonthAmount = acc.MonthPayments.Where(m => !m.IsCurrentMonth).OrderBy(m => m.Id).FirstOrDefault()?.EndOfMonthAmount ?? 0;
-                        var totalPaymentsThisMonth = currMonth.Payments.Where(p => !p.IsIncome).Sum(p => p.Amount);
-                        var totalIncomeThisMonth = currMonth.Payments.Where(p => p.IsIncome).Sum(p => p.Amount);
-                        var endOfMonthAmount = prevMonthAmount + acc.MonthlyNetSalaryAmount + totalIncomeThisMonth - totalPaymentsThisMonth;
-                        thisMonth.EndOfMonthAmount = endOfMonthAmount;
-                        thisMonth.IsCurrentMonth = false;
-
-                        newMonth = BuildNewMonth(acc);
-                        
-                        acc.MonthPayments.Add(newMonth);                        
-                        //not sure if should update repo at this point...
-                        //_repository.Update(acc);
-                    }
-                    while (newMonth.MonthPayDay <= DateTime.Today);
-                }
-
-                var dto = acc.ToUserAccountDto();
-                dto.UserId = userId;
-
-                userAccounts.Add(dto);
+                userAccounts.Add(ConfigureAccount(acc, userId));
             }
             
             return userAccounts;
         }
 
+        private UserAccountDto ConfigureAccount(Account acc, int userId)
+        {
+            var currMonthId = acc.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Id;
+
+            var currMonth = _repository.GetAllWithIncludes<MonthPayment>(includes => includes.Payments).FirstOrDefault(m => m.Id == currMonthId);
+
+            if (currMonth != null)
+            {
+                currMonth.Payments = GenerateMonthPayments(currMonth, acc.PlannedPayments, acc.NextDateSalaryPaid) as ICollection<Payment>;
+            }
+            var newMonths = new List<MonthPayment>();
+            if (acc.NextDateSalaryPaid <= DateTime.Today)
+            {
+                var newMonth = new MonthPayment();
+                do
+                {
+                    var thisMonth = acc.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth);
+                    var prevMonthAmount = 
+                        acc.MonthPayments.Where(m => !m.IsCurrentMonth).OrderByDescending(m => m.Month).FirstOrDefault()?.EndOfMonthAmount ?? 0;
+
+                    var totalPaymentsThisMonth = currMonth.Payments.Where(p => !p.IsIncome).Sum(p => p.Amount);
+                    var totalIncomeThisMonth = currMonth.Payments.Where(p => p.IsIncome).Sum(p => p.Amount);
+                    var endOfMonthAmount = prevMonthAmount + acc.MonthlyNetSalaryAmount + totalIncomeThisMonth - totalPaymentsThisMonth;
+                    thisMonth.EndOfMonthAmount = endOfMonthAmount;
+                    thisMonth.IsCurrentMonth = false;
+
+                    newMonth = BuildNewMonth(acc);
+
+                    acc.MonthPayments.Add(newMonth);
+                }
+                while (acc.NextDateSalaryPaid <= DateTime.Today);
+
+                _repository.UpdateEntity(acc);
+            }
+
+            var dto = acc.ToUserAccountDto();
+            dto.UserId = userId;
+
+            return dto;
+        }
+
         private MonthPayment BuildNewMonth(Account acc)
         {
             var newMonthPayment = new MonthPayment();
-            var lastMonth = acc.MonthPayments.OrderBy(m => m.Id).FirstOrDefault();
+            var lastMonth = acc.MonthPayments.OrderByDescending(m => m.Month).FirstOrDefault();
             if (lastMonth != null)
             {
                 newMonthPayment.IsCurrentMonth = true;
                 newMonthPayment.Month = lastMonth.Month == 11 ? 0 : lastMonth.Month + 1; //redo this properly! 
                 newMonthPayment.MonthPayDay = acc.NextDateSalaryPaid;
+                newMonthPayment.AccountId = acc.Id;
                 ConfigureNextPayDate(acc, lastMonth.MonthPayDay);
 
                 newMonthPayment.Payments = GenerateMonthPayments(newMonthPayment, acc.PlannedPayments, acc.NextDateSalaryPaid) as ICollection<Payment>;
@@ -234,6 +236,10 @@ namespace BunnyBudgetter.Business.Services
                     if (DateToPay >= wasPaidOn && DateToPay < nextPayDay)
                     {
                         retPlannedPayments.Add(p);
+                        if (currentMonthPayment.Payments == null)
+                        {
+                            currentMonthPayment.Payments = new List<Payment>();
+                        }
 
                         if (!currentMonthPayment.Payments.Any(payment => payment.PlannedPaymentId == p.Id && payment.Date == DateToPay))
                         {

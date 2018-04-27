@@ -20,7 +20,7 @@ namespace BunnyBudgetter.Business.Services
 
         public async Task CreateUser(User user)
         {
-            await _repository.AddEntity(user);
+            await _repository.AddEntityAsync(user);
         }
 
         public async Task<string> GenerateNewAccessCode(int userId)
@@ -39,7 +39,7 @@ namespace BunnyBudgetter.Business.Services
             if (user != null)
             {
                 user.AccessCode = newCode;
-                await _repository.UpdateEntity(user);
+                await _repository.UpdateEntityAsync(user);
             }
 
             return newCode;

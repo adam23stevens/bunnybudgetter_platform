@@ -10,11 +10,15 @@ namespace BunnyBudgetter.Data.Repositories
 {
     public interface IRepository
     {
-        Task AddEntity<T>(T entity) where T : class;
+        Task AddEntityAsync<T>(T entity) where T : class;
+
+        void AddEntity<T>(T entity) where T : class;
 
         Task<T> GetEntityById<T>(int id) where T : class;
 
-        Task UpdateEntity<T>(T obj) where T : class;
+        Task UpdateEntityAsync<T>(T obj) where T : class;
+
+        void UpdateEntity<T>(T obj) where T : class;
 
         IQueryable<T> GetAll<T>() where T : class;
 

@@ -30,7 +30,7 @@ namespace BunnyBudgetter.Business.Services
                 account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth).Payments.Add(payment);
             }
 
-            await _repository.UpdateEntity(account);
+            await _repository.UpdateEntityAsync(account);
         }
     }
 }

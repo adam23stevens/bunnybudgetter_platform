@@ -18,7 +18,7 @@ namespace BunnyBudgetter.Data.Repositories
             _context = context;
         }
 
-        public async Task AddEntity<T>(T entity) where T : class
+        public async Task AddEntityAsync<T>(T entity) where T : class
         {
             if (entity != null)
             {
@@ -57,10 +57,22 @@ namespace BunnyBudgetter.Data.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task UpdateEntity<T>(T obj) where T : class
+        public async Task UpdateEntityAsync<T>(T obj) where T : class
         {
             _context.Update<T>(obj);
             await _context.SaveChangesAsync();
+        }
+
+        public void UpdateEntity<T>(T obj) where T : class
+        {
+            _context.Update(obj);
+            _context.SaveChanges();
+        }
+
+        public void AddEntity<T>(T obj) where T : class
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
         }
     }
 }
