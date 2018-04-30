@@ -13,8 +13,10 @@ namespace BunnyBudgetter.Business.Extensions
         public static UserAccountDto ToUserAccountDto(this Account account)
         {
             var month = account.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth);
-            var remainingBalance = account.MonthPayments.Where(m => !m.IsCurrentMonth).OrderBy(m => m.Id).FirstOrDefault()?.EndOfMonthAmount ?? 0;
+            var remainingBalance = account.MonthPayments.Where(m => !m.IsCurrentMonth).OrderByDescending(m => m.Id).FirstOrDefault()?.EndOfMonthAmount ?? 0;
             month.Payments.ToList().ForEach(p => remainingBalance = p.IsIncome ? remainingBalance + p.Amount : remainingBalance - p.Amount);
+
+            var remainingDaysTillPayDay = (account.NextDateSalaryPaid - DateTime.Today).Days;
 
             var paymentTypeDtos = new List<PaymentTypeDto>();
 
@@ -30,6 +32,7 @@ namespace BunnyBudgetter.Business.Extensions
                 PaymentTypeDtos = paymentTypeDtos,
                 CurrentMonthPayments = month.Payments.ToList(),
                 RemainingBalance = remainingBalance,
+                RemainingDaysTillPayDay = remainingDaysTillPayDay,
                 Currentmonth = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month.Month)
         };
         }

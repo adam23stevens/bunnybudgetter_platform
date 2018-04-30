@@ -174,7 +174,7 @@ namespace BunnyBudgetter.Business.Services
                 {
                     var thisMonth = acc.MonthPayments.FirstOrDefault(m => m.IsCurrentMonth);
                     var prevMonthAmount = 
-                        acc.MonthPayments.Where(m => !m.IsCurrentMonth).OrderByDescending(m => m.Month).FirstOrDefault()?.EndOfMonthAmount ?? 0;
+                        acc.MonthPayments.Where(m => !m.IsCurrentMonth).OrderByDescending(m => m.Id).FirstOrDefault()?.EndOfMonthAmount ?? 0;
 
                     var totalPaymentsThisMonth = currMonth.Payments.Where(p => !p.IsIncome).Sum(p => p.Amount);
                     var totalIncomeThisMonth = currMonth.Payments.Where(p => p.IsIncome).Sum(p => p.Amount);
@@ -200,7 +200,7 @@ namespace BunnyBudgetter.Business.Services
         private MonthPayment BuildNewMonth(Account acc)
         {
             var newMonthPayment = new MonthPayment();
-            var lastMonth = acc.MonthPayments.OrderByDescending(m => m.Month).FirstOrDefault();
+            var lastMonth = acc.MonthPayments.OrderByDescending(m => m.Id).FirstOrDefault();
             if (lastMonth != null)
             {
                 newMonthPayment.IsCurrentMonth = true;
